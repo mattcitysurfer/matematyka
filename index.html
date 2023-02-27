@@ -4,10 +4,10 @@
         <script src="math.js"></script>
         <style>
             #mainSection {
-            margin-top: 200px;
-            margin-bottom: 10px;
-            margin-right: 10px;
-            margin-left: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 200;
             }
             #answer{
                 width: 170px
@@ -24,6 +24,7 @@
     </head>
     <body onLoad="init();">
         <div id="mainSection">
+            <div>
                 <h4 id="mathOperation"></h3>
 
                 <input type="number" id="answer" autofocus pattern="\d*"> <img id="resultPicture" height="25px">
@@ -32,6 +33,7 @@
                 <button id="checkResult" onclick="checkResult()">Sprawdź</button>
                 <br>
                 <button id="reload" onclick="newOperation()">Nowy</button>
+                </div>
         </div>
     </body>
 </html>
