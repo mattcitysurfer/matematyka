@@ -5,39 +5,30 @@ let max
 
 let number1
 let number2
+let number3
+let operation
 let result
-let textToDisplay
 
-function init(){
-    max=urlParams.get('max')
-    if(!max) {
-        max=10
-    }
-    var input = document.getElementById("answer")
-    input.addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-            document.getElementById("checkResult").click()
-        }
-    })
-    newOperation()
-}
+let onlyAllowedOperation
 
 function newOperation() {
-    document.getElementById("checkResult").disabled=false
-    document.getElementById("resultPicture").setAttribute("src", "question.png")
-    document.getElementById("answer").value=null
-    document.getElementById("answer").focus()
-
     number1 = Math.floor(Math.random() * max)
     number2 = Math.floor(Math.random() * max)
-    result = number1 + number2
+    number3 = number1 + number2
 
-    textToDisplay=number1 + " + " + number2 + " = "
+    operation = getOperation()
 
-    console.log("Operation: " + textToDisplay)
+    let operationToDisplay = getOperationToDisplay(operation)
+    console.log("Operation: " + operationToDisplay)
+
+    result = getResult()
     console.log("Result: " + result)
 
-    document.getElementById("mathOperation").innerHTML = textToDisplay
+    document.getElementById("mathOperation").innerHTML = operationToDisplay
+    document.getElementById("answer").value=null
+    document.getElementById("answer").focus()
+    document.getElementById("resultPicture").setAttribute("src", "question.png")
+    document.getElementById("checkResult").disabled=false
     document.getElementById("reload").disabled=true
 }
 
@@ -62,3 +53,52 @@ function checkResult() {
     }
 }
 
+function getOperation() {
+    if (onlyAllowedOperation == "addition") {
+        return "ADDITION"
+    } else if (onlyAllowedOperation == "subtraction") {
+        return "SUBTRACTION"
+    } else {
+        if (operation=="ADDITION") {
+            return "SUBTRACTION"
+        } else {
+            return "ADDITION"
+        }
+    }
+}
+
+function getOperationToDisplay(operation) {
+    if (operation=="ADDITION") {
+        return number1 + " + " + number2 + " = "
+    } else {
+        return number3 + " - " + number2 + " = "
+    }
+}
+
+function getResult() {
+    if (operation=="ADDITION") {
+        return number3
+    } else {
+        return number1
+    }
+}
+
+function init(){
+    max=urlParams.get("max")
+    if(!max) {
+        max=10
+    }
+    max++
+
+    console.log("max:" + max)
+    onlyAllowedOperation=urlParams.get('only')
+
+    operation="SUBTRACTION"
+    var input = document.getElementById("answer")
+    input.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            document.getElementById("checkResult").click()
+        }
+    })
+    newOperation()
+}
