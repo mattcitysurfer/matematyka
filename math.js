@@ -1,7 +1,7 @@
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 
-let max
+let level
 
 let number1
 let number2
@@ -12,8 +12,9 @@ let result
 let onlyAllowedOperation
 
 function newOperation() {
-    number1 = Math.floor(Math.random() * max)
-    number2 = Math.floor(Math.random() * max)
+    level = document.getElementById("levelSlider").value
+    number1 = Math.floor(Math.random() * level)
+    number2 = Math.floor(Math.random() * level)
     number3 = number1 + number2
 
     operation = getOperation()
@@ -30,6 +31,7 @@ function newOperation() {
     document.getElementById("resultPicture").setAttribute("src", "question.png")
     document.getElementById("checkResult").disabled=false
     document.getElementById("reload").disabled=true
+    document.getElementById("levelSlider").disabled=true
 }
 
 function checkResult() {
@@ -42,6 +44,7 @@ function checkResult() {
         document.getElementById("resultPicture").setAttribute("src", "correct.png")
         document.getElementById("checkResult").disabled=true
         document.getElementById("reload").disabled=false
+        document.getElementById("levelSlider").disabled=false
         document.getElementById("reload").focus()
 
     } else {
@@ -49,6 +52,7 @@ function checkResult() {
         document.getElementById("resultPicture").setAttribute("src", "incorrect.png")
         document.getElementById("checkResult").disabled=false
         document.getElementById("reload").disabled=true
+        document.getElementById("levelSlider").disabled=true
         document.getElementById("answer").focus()
     }
 }
@@ -84,13 +88,17 @@ function getResult() {
 }
 
 function init(){
-    max=urlParams.get("max")
-    if(!max) {
-        max=10
-    }
-    max++
+    // level=urlParams.get("max")
+    // if(!level) {
+    //     level=10
+    // }
+    // level++
+    level = 10
+    document.getElementById("levelSlider").value=level
+    document.getElementById("levelSelected").value=level
 
-    console.log("max:" + max)
+    console.log("level:" + level)
+
     onlyAllowedOperation=urlParams.get('only')
 
     operation="SUBTRACTION"
