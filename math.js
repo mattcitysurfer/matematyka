@@ -9,6 +9,8 @@ let number3
 let operation
 let result
 
+let operationToDisplay
+
 let onlyAllowedOperation
 
 function newOperation() {
@@ -19,7 +21,7 @@ function newOperation() {
 
     operation = getOperation()
 
-    let operationToDisplay = getOperationToDisplay(operation)
+    operationToDisplay = getOperationToDisplay(operation)
     console.log("Operation: " + operationToDisplay)
 
     result = getResult()
@@ -46,7 +48,7 @@ function checkResult() {
         document.getElementById("reload").disabled=false
         document.getElementById("levelSlider").disabled=false
         document.getElementById("reload").focus()
-
+        updateResults(answer, true)
     } else {
         console.log("Incorrect answer")
         document.getElementById("resultPicture").setAttribute("src", "incorrect.png")
@@ -54,8 +56,52 @@ function checkResult() {
         document.getElementById("reload").disabled=true
         document.getElementById("levelSlider").disabled=true
         document.getElementById("answer").focus()
+        updateResults(answer, false)
     }
 }
+
+function updateResults(answer, isCorrect) {
+    let operationToDisplayWithAnswer = "L" + level + ": " + operationToDisplay + answer
+    console.log(operationToDisplayWithAnswer)
+
+    let usersAnswersTable = document.getElementById("usersAnswersTable")
+    var tr = usersAnswersTable.insertRow(0)
+    var td1 = tr.insertCell(0)
+    var td2 = tr.insertCell(1)
+    td1.innerHTML = "L" + level + ": "
+    td2.innerHTML = operationToDisplay + answer
+
+    // let tr = document.createElement("tr")
+    // let td1 = document.createElement("td1");
+    // let td2 = document.createElement("td2");
+    // td1.innerText = "L" + level + ": "
+    // td2.innerText = operationToDisplay + answer
+    // tr.appendChild(td1)
+    // tr.appendChild(td2)
+    // usersAnswersTable.appendChild(tr)
+
+    if (isCorrect) {
+        tr.className = "text-success"
+    } else {
+        tr.className = "text-danger"
+    }
+
+    td1.className="levelColumn"
+    td2.className="operationColumn"
+}
+
+function showHistory() {
+    var usersAnswersTable = document.getElementById("usersAnswersTable");
+    var historyButton = document.getElementById("history");
+  
+    if (usersAnswersTable.style.display === "none") {
+        usersAnswersTable.style.display = "inline";
+        historyButton.innerHTML = "Ukryj";
+    } else {
+        usersAnswersTable.style.display = "none";
+        historyButton.innerHTML = "Pokaż";
+    }
+  }
 
 function getOperation() {
     if (onlyAllowedOperation == "addition") {

@@ -10,12 +10,12 @@
             /* margin-top: 200px; */
             }
             #logo{
-            margin-top: 5px;
-            margin-bottom: 5px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            height: 175px
+                margin-top: 5px;
+                margin-bottom: 5px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                height: 175px
             }
             #mathOperation{
                 text-align: center;
@@ -26,10 +26,30 @@
             #levelSlider{
                 width: 200px
             }
+            #usersAnswersTable{
+                table-layout:fixed;
+                width: 200px;            
+            }
+            .correctItem{
+                color: green;
+            }
+            .incorrectItem{
+                color: red;
+            }
+            #usersAnswersTable tr:first-child td {
+                background: #ffc107;
+            }
+            .operationColumn{
+                width: 150px;
+                /* font-weight: bold; */
+            } 
+            .levelColumn{
+                width: 50px;
+            }        
             button{
                 width: 200px;
                 height: 50px
-            };
+            }
         </style>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
@@ -51,6 +71,13 @@
                 <br><br>
                 <input id="levelSlider" type="range" step="5" min="5" max="100" oninput="this.nextElementSibling.value = this.value">
                 <output id="levelSelected"></output>
+
+                <br><br>
+                <button onclick="showHistory()" id="history">Ukryj</button>
+                <br><br>
+                <table id="usersAnswersTable" style="display: none;">
+
+                </table>
             </div>
         </div>
     </body>
