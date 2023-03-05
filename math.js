@@ -59,8 +59,7 @@ function checkResult() {
         updateResults(answer, false)
     }
 
-    let historyButton = document.getElementById("history");
-    historyButton.style.display = "inline";
+    document.getElementById("history").disabled = false
 }
 
 function updateResults(answer, isCorrect) {
@@ -136,6 +135,8 @@ function init(){
     console.log("level:" + level)
 
     onlyAllowedOperation=urlParams.get('only')
+
+    document.getElementById("history").disabled = true
 
     operation="SUBTRACTION"
     let input = document.getElementById("answer")

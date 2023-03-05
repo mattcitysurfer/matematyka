@@ -2,55 +2,7 @@
     <head>
         <title>Matematyka</title>
         <script src="math.js"></script>
-        <style>
-            #mainSection {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            /* margin-top: 200px; */
-            }
-            #logo{
-                margin-top: 5px;
-                margin-bottom: 5px;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                height: 175px
-            }
-            #mathOperation{
-                text-align: center;
-            }
-            #answer{
-                width: 200px
-            }
-            #levelSlider{
-                width: 200px
-            }
-            #usersAnswersTable{
-                table-layout:fixed;
-                width: 200px;            
-            }
-            .correctItem{
-                color: green;
-            }
-            .incorrectItem{
-                color: red;
-            }
-            #usersAnswersTable tr:first-child td {
-                background: #ffc107;
-            }
-            .operationColumn{
-                width: 150px;
-                /* font-weight: bold; */
-            } 
-            .levelColumn{
-                width: 50px;
-            }        
-            button{
-                width: 200px;
-                height: 50px
-            }
-        </style>
+        <link rel="stylesheet" href="math.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body onLoad="init();">
@@ -75,23 +27,23 @@
                 <div>
                     <br>
                     <input type="radio" id="add" name="operation" value="ADD" checked="checked">
-                    <label for="contactChoice1">dodawanie</label>
+                    <label for="add">dodawanie</label>
               
                     <br>
                     <input type="radio" id="subtract" name="operation" value="SUBTRACT">
-                    <label for="contactChoice2">odejmowanie</label>
+                    <label for="subtract">odejmowanie</label>
                     
                     <br>
                     <input type="radio" id="multiply" name="operation" value="MULTIPLY" disabled="true">
-                    <label for="contactChoice3">mnożenie</label>
+                    <label for="multiply">mnożenie</label>
 
                     <br>
                     <input type="radio" id="divide" name="operation" value="DIVIDE" disabled="true">
-                    <label for="contactChoice3">dzielenie</label>
+                    <label for="divide">dzielenie</label>
                 </div>
 
                 <br>
-                <button onclick="showHistory()" id="history" style="display: none;">Pokaż historię</button>
+                <button onclick="showHistory()" id="history">Pokaż historię</button>
                 <br><br>
                 <table id="usersAnswersTable" style="display: none;">
 
