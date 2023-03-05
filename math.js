@@ -19,7 +19,7 @@ function newOperation() {
     number2 = Math.floor(Math.random() * level)
     number3 = number1 + number2
 
-    operation = getOperation()
+    operation = document.querySelector('input[name="operation"]:checked').value
 
     operationToDisplay = getOperationToDisplay(operation)
     console.log("Operation: " + operationToDisplay)
@@ -58,6 +58,9 @@ function checkResult() {
         document.getElementById("answer").focus()
         updateResults(answer, false)
     }
+
+    let historyButton = document.getElementById("history");
+    historyButton.style.display = "inline";
 }
 
 function updateResults(answer, isCorrect) {
@@ -65,10 +68,10 @@ function updateResults(answer, isCorrect) {
     console.log(operationToDisplayWithAnswer)
 
     let usersAnswersTable = document.getElementById("usersAnswersTable")
-    var tr = usersAnswersTable.insertRow(0)
-    var td1 = tr.insertCell(0)
-    var td2 = tr.insertCell(1)
-    td1.innerHTML = "L" + level + ": "
+    let tr = usersAnswersTable.insertRow(0)
+    let td1 = tr.insertCell(0)
+    let td2 = tr.insertCell(1)
+    td1.innerHTML = "L" + level
     td2.innerHTML = operationToDisplay + answer
 
     // let tr = document.createElement("tr")
@@ -96,29 +99,16 @@ function showHistory() {
   
     if (usersAnswersTable.style.display === "none") {
         usersAnswersTable.style.display = "inline";
-        historyButton.innerHTML = "Ukryj";
+        historyButton.innerHTML = "Ukryj historię";
     } else {
         usersAnswersTable.style.display = "none";
-        historyButton.innerHTML = "Pokaż";
+        historyButton.innerHTML = "Pokaż historię";
     }
   }
 
-function getOperation() {
-    if (onlyAllowedOperation == "addition") {
-        return "ADDITION"
-    } else if (onlyAllowedOperation == "subtraction") {
-        return "SUBTRACTION"
-    } else {
-        if (operation=="ADDITION") {
-            return "SUBTRACTION"
-        } else {
-            return "ADDITION"
-        }
-    }
-}
 
 function getOperationToDisplay(operation) {
-    if (operation=="ADDITION") {
+    if (operation=="ADD") {
         return number1 + " + " + number2 + " = "
     } else {
         return number3 + " - " + number2 + " = "
@@ -126,7 +116,7 @@ function getOperationToDisplay(operation) {
 }
 
 function getResult() {
-    if (operation=="ADDITION") {
+    if (operation=="ADD") {
         return number3
     } else {
         return number1
@@ -148,7 +138,7 @@ function init(){
     onlyAllowedOperation=urlParams.get('only')
 
     operation="SUBTRACTION"
-    var input = document.getElementById("answer")
+    let input = document.getElementById("answer")
     input.addEventListener("keypress", function(event) {
         if (event.key === "Enter") {
             document.getElementById("checkResult").click()
