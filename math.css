@@ -1,47 +1,47 @@
-            #mainSection {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            /* margin-top: 200px; */
-            }
-            #logo{
-                margin-top: 5px;
-                margin-bottom: 5px;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                height: 175px
-            }
-            #mathOperation{
-                text-align: center;
-            }
-            #answer{
-                width: 200px
-            }
-            #levelSlider{
-                width: 200px
-            }
-            #usersAnswersTable{
-                table-layout:fixed;
-                width: 200px;            
-            }
-            .correctItem{
-                color: green;
-            }
-            .incorrectItem{
-                color: red;
-            }
-            #usersAnswersTable tr:first-child td {
-                background: #ffc107;
-            }
-            .operationColumn{
-                width: 150px;
-                /* font-weight: bold; */
-            } 
-            .levelColumn{
-                width: 50px;
-            }        
-            button{
-                width: 200px;
-                height: 50px
-            }
+#mainSection {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* margin-top: 200px; */
+}
+#logo{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 175px
+}
+#mathOperation{
+    text-align: center;
+}
+#answer{
+    width: 200px
+}
+#levelSlider{
+    width: 200px
+}
+#usersAnswersTable{
+    table-layout:fixed;
+    width: 200px;            
+}
+.correctItem{
+    color: green;
+}
+.incorrectItem{
+    color: red;
+}
+#usersAnswersTable tr:first-child td {
+    background: #ffc107;
+}
+.operationColumn{
+    width: 150px;
+    /* font-weight: bold; */
+} 
+.levelColumn{
+    width: 50px;
+}        
+button{
+    width: 200px;
+    height: 50px
+}
