@@ -8,15 +8,24 @@ let number2
 let number3
 let operation
 let result
+let checked
 
 let operationToDisplay
 
 let onlyAllowedOperation
 
 function newOperation() {
+    if(checked === false) {
+        updateResults("", false)
+        document.getElementById("history").disabled = false
+    } else {
+        checked = false
+    }
+
+
     level = document.getElementById("levelSlider").value
-    number1 = Math.floor(Math.random() * level)
-    number2 = Math.floor(Math.random() * level)
+    number1 = getRandom(true, level)
+    number2 = getRandom(true, level)
     number3 = number1 + number2
 
     operation = document.querySelector('input[name="operation"]:checked').value
@@ -32,12 +41,18 @@ function newOperation() {
     document.getElementById("answer").focus()
     document.getElementById("resultPicture").setAttribute("src", "question.png")
     document.getElementById("checkResult").disabled=false
-    document.getElementById("reload").disabled=true
-    document.getElementById("levelSlider").disabled=true
+    // document.getElementById("reload").disabled=true
+    // document.getElementById("levelSlider").disabled=true
 }
 
 function checkResult() {
     let answer = document.getElementById("answer").value
+    if(answer === ""){
+        console.log("Empty field!")
+        return
+    }
+
+    checked = true
 
     console.log("Answer: " + answer)
 
@@ -45,16 +60,16 @@ function checkResult() {
         console.log("Correct answer")
         document.getElementById("resultPicture").setAttribute("src", "correct.png")
         document.getElementById("checkResult").disabled=true
-        document.getElementById("reload").disabled=false
-        document.getElementById("levelSlider").disabled=false
+        // document.getElementById("reload").disabled=false
+        // document.getElementById("levelSlider").disabled=false
         document.getElementById("reload").focus()
         updateResults(answer, true)
     } else {
         console.log("Incorrect answer")
         document.getElementById("resultPicture").setAttribute("src", "incorrect.png")
         document.getElementById("checkResult").disabled=false
-        document.getElementById("reload").disabled=true
-        document.getElementById("levelSlider").disabled=true
+        // document.getElementById("reload").disabled=true
+        // document.getElementById("levelSlider").disabled=true
         document.getElementById("answer").focus()
         updateResults(answer, false)
     }
@@ -103,7 +118,17 @@ function showHistory() {
         usersAnswersTable.style.display = "none";
         historyButton.innerHTML = "Pokaż historię";
     }
-  }
+}
+
+function getRandom(excludeZero, maxValue) {
+    let randomNumber = Math.floor(Math.random() * level)
+    console.log("Random number: " + randomNumber)
+    if (excludeZero && randomNumber === 0) {
+        console.log("Not zero!!!")
+        return getRandom(true, maxValue)
+    }
+    return randomNumber
+}
 
 
 function getOperationToDisplay(operation) {
